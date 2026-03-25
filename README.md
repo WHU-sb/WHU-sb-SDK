@@ -4,25 +4,36 @@ This directory contains official SDKs for interacting with the WHU-sb (武汉大
 
 ## Supported Languages
 
-- [Python](./python) - Python 3.8+
-- [Go](./go) - Go 1.20+
-- [JavaScript/TypeScript](./javascript) - Node.js 16+ or Browser
-- [Java](./java) - Java 11+
-- [Rust](./rust) - Rust 1.56+
+| Language | Platform | Link |
+| --- | --- | --- |
+| **Python** | Python 3.8+ | [./python](./python) |
+| **Go** | Go 1.20+ | [./go](./go) |
+| **TypeScript/JS** | Node.js / Browser | [./javascript](./javascript) |
+| **Java** | Java 11+ | [./java](./java) |
+| **Rust** | Rust 1.56+ | [./rust](./rust) |
+| **Swift** | iOS / macOS | [./swift](./swift) |
+| **Dart** | Flutter / Dart | [./dart](./dart) |
+| **C#** | .NET Standard 2.0+ | [./csharp](./csharp) |
+| **Ruby** | Ruby 2.7+ | [./ruby](./ruby) |
+| **PHP** | PHP 7.4+ | [./php](./php) |
 
 ## API Documentation
 
 For full API documentation, please refer to the backend's documentation service at `http://your-server-address/api/v1`.
 
+## Features
+
+- **Course**: Search, Get by UID/ID, Get teachers, Get reviews, Batch search
+- **Teacher**: Search, Get by UID/ID, Get courses
+- **Review**: Search, Get by UID/ID, Submit review (with signature)
+- **Search**: All, Simple, Advanced, QueryBuilder, Hot Searches
+- **User**: Profile, Activity, Dashboard, Notifications, Preferences
+- **Translation**: Translate text, Check service status
+- **External**: Integration with HAM course statistics
+
 ## Authentication
 
-Most API endpoints require authentication.- **Course**: Search, Get by UID/ID, Get teachers, Get reviews
-- **Teacher**: Search, Get by UID/ID, Get courses
-- **Review**: Search, Get by UID/ID, Submit review
-- **Search**: All, Simple, Advanced, QueryBuilder, Hot Searches
-- **User**: Profile, Activity, Dashboard, Notifications
-- **Translation**: Translate, Status
-You can obtain an API key and secret from your user profile page in the application.
+Most API endpoints require authentication. You can obtain an API key and secret from your user profile page in the application.
 
 ```bash
 # Example environment variables

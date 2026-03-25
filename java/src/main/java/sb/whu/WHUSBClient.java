@@ -7,10 +7,6 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.time.Instant;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class WHUSBClient {
     private final String apiKey;
@@ -30,7 +26,8 @@ public class WHUSBClient {
     }
 
     private String generateSignature(long timestamp) {
-        if (apiKey == null || apiSecret == null) return "";
+        if (apiKey == null || apiSecret == null)
+            return "";
         try {
             String payload = apiKey + timestamp + apiSecret;
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -38,7 +35,8 @@ public class WHUSBClient {
             StringBuilder hexString = new StringBuilder();
             for (byte b : hash) {
                 String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
+                if (hex.length() == 1)
+                    hexString.append('0');
                 hexString.append(hex);
             }
             return hexString.toString();
@@ -50,7 +48,7 @@ public class WHUSBClient {
     private String sendRequest(String method, String endpoint, String jsonBody) throws Exception {
         long timestamp = Instant.now().getEpochSecond();
         String url = baseUrl + (endpoint.startsWith("/") ? endpoint : "/" + endpoint);
-        
+
         HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
@@ -72,11 +70,11 @@ public class WHUSBClient {
         }
 
         HttpResponse<String> response = httpClient.send(builder.build(), HttpResponse.BodyHandlers.ofString());
-        
+
         if (response.statusCode() >= 400) {
             throw new Exception("API error (" + response.statusCode() + "): " + response.body());
         }
-        
+
         return response.body();
     }
 
@@ -102,7 +100,8 @@ public class WHUSBClient {
     // --- Search APIs ---
     public String simpleSearch(String query, String scope, int page, int limit) throws Exception {
         String encodedQuery = java.net.URLEncoder.encode(query, StandardCharsets.UTF_8);
-        return sendRequest("GET", "/search/simple?query=" + encodedQuery + "&scope=" + scope + "&page=" + page + "&limit=" + limit, null);
+        return sendRequest("GET",
+                "/search/simple?query=" + encodedQuery + "&scope=" + scope + "&page=" + page + "&limit=" + limit, null);
     }
 
     // --- User APIs ---
