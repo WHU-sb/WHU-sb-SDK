@@ -38,11 +38,14 @@ pub struct APIResponse<T> {
 }
 
 impl WHUSBClient {
-    pub fn new(api_key: Option<String>, api_secret: Option<String>, base_url: String) -> Self {
+    pub fn new(api_key: Option<String>, api_secret: Option<String>, base_url: Option<String>) -> Self {
+        let final_url = base_url.unwrap_or_else(|| {
+            std::env::var("WHUSB_API_BASE_URL").unwrap_or_else(|_| "https://api.whu.sb/api/v1".to_string())
+        });
         Self {
             api_key,
             api_secret,
-            base_url: base_url.trim_end_matches('/').to_string(),
+            base_url: final_url.trim_end_matches('/').to_string(),
             http_client: Client::new(),
         }
     }

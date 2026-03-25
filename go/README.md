@@ -14,29 +14,29 @@ go get github.com/your-username/whu-sb-sdk-go
 package main
 
 import (
-	"fmt"
-	"github.com/your-username/whu-sb-sdk-go"
+ "fmt"
+ "github.com/your-username/whu-sb-sdk-go"
 )
 
 func main() {
-	// Initialize the client
-	client := whusb.NewClient("your_api_key", "your_api_secret", "https://whu.sb/api/v1")
+ // Initialize the client
+ client := whusb.NewClient("your_api_key", "your_api_secret", "https://api.whu.sb/api/v1")
 
-	// Search for a course
-	results, err := client.SearchCourses("计算机", 1, 10)
-	if err != nil {
-		panic(err)
-	}
+ // Search for a course
+ results, err := client.SearchCourses("计算机", 1, 10)
+ if err != nil {
+  panic(err)
+ }
 
-	for _, course := range results.Items {
-		fmt.Printf("%s (ID: %d)\n", course.Name, course.ID)
-	}
+ for _, course := range results.Items {
+  fmt.Printf("%s (ID: %d)\n", course.Name, course.ID)
+ }
 
-	// Get course detail
-	course, err := client.GetCourse("CS101")
-	if err == nil {
-		fmt.Println(course.Name)
-	}
+ // Get course detail
+ course, err := client.GetCourse("CS101")
+ if err == nil {
+  fmt.Println(course.Name)
+ }
 }
 ```
 

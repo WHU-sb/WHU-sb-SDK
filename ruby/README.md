@@ -24,7 +24,7 @@ require 'whu_sb'
 client = WHUSBSDK::Client.new(
   api_key: 'your_api_key',
   api_secret: 'your_api_secret',
-  base_url: 'https://whu.sb/api/v1'
+  base_url: 'https://api.whu.sb/api/v1'
 )
 
 # Search for a course

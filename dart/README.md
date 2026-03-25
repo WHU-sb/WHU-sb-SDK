@@ -22,7 +22,7 @@ void main() async {
   final client = WHUSBClient(
     apiKey: 'your_api_key',
     apiSecret: 'your_api_secret',
-    baseUrl: 'https://whu.sb/api/v1',
+    baseUrl: 'https://api.whu.sb/api/v1',
   );
 
   // Search for a course

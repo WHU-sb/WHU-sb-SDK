@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -15,14 +16,21 @@ import (
 
 // Client WHU-sb API Go SDK Client
 type Client struct {
-	APIKey    string
-	APISecret string
-	BaseURL   string
+	APIKey     string
+	APISecret  string
+	BaseURL    string
 	HTTPClient *http.Client
 }
 
-// NewClient Create a new Go SDK Client
+// NewClient Create a new Go SDK Client. If baseURL is empty, it will check the
+// WHUSB_API_BASE_URL environment variable or use the default "https://api.whu.sb/api/v1".
 func NewClient(apiKey, apiSecret, baseURL string) *Client {
+	if baseURL == "" {
+		baseURL = os.Getenv("WHUSB_API_BASE_URL")
+		if baseURL == "" {
+			baseURL = "https://api.whu.sb/api/v1"
+		}
+	}
 	return &Client{
 		APIKey:    apiKey,
 		APISecret: apiSecret,
@@ -63,9 +71,9 @@ type Course struct {
 }
 
 type Teacher struct {
-	ID         uint64 `json:"id"`
-	TeacherUID string `json:"teacher_uid"`
-	Name       string `json:"name"`
+	ID          uint64 `json:"id"`
+	TeacherUID  string `json:"teacher_uid"`
+	Name        string `json:"name"`
 	ReviewCount int    `json:"reviewCount"`
 }
 

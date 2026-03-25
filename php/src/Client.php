@@ -12,7 +12,9 @@ class Client
     {
         $this->apiKey = $config['apiKey'] ?? null;
         $this->apiSecret = $config['apiSecret'] ?? null;
-        $this->baseUrl = rtrim($config['baseUrl'] ?? 'https://whu.sb/api/v1', '/');
+        
+        $defaultBaseUrl = getenv('WHUSB_API_BASE_URL') ?: 'https://api.whu.sb/api/v1';
+        $this->baseUrl = rtrim($config['baseUrl'] ?? $defaultBaseUrl, '/');
     }
 
     private function generateSignature(int $timestamp): string

@@ -6,10 +6,11 @@ public struct WHUSBConfig {
     public let apiSecret: String?
     public let baseUrl: String
     
-    public init(apiKey: String? = nil, apiSecret: String? = nil, baseUrl: String = "https://whu.sb/api/v1") {
+    public init(apiKey: String? = nil, apiSecret: String? = nil, baseUrl: String? = nil) {
         self.apiKey = apiKey
         self.apiSecret = apiSecret
-        self.baseUrl = baseUrl.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        let defaultUrl = ProcessInfo.processInfo.environment["WHUSB_API_BASE_URL"] ?? "https://api.whu.sb/api/v1"
+        self.baseUrl = (baseUrl ?? defaultUrl).trimmingCharacters(in: CharacterSet(charactersIn: "/"))
     }
 }
 
@@ -47,7 +48,7 @@ public class WHUSBClient {
         self.session = URLSession.shared
     }
     
-    public init(apiKey: String? = nil, apiSecret: String? = nil, baseUrl: String = "https://whu.sb/api/v1") {
+    public init(apiKey: String? = nil, apiSecret: String? = nil, baseUrl: String? = nil) {
         self.config = WHUSBConfig(apiKey: apiKey, apiSecret: apiSecret, baseUrl: baseUrl)
         self.session = URLSession.shared
     }

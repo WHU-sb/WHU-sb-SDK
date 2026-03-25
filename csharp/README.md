@@ -19,7 +19,7 @@ dotnet add package Newtonsoft.Json
 ```csharp
 using WHUSBSDK;
 
-var client = new WHUSBClient("your_api_key", "your_api_secret", "https://whu.sb/api/v1");
+var client = new WHUSBClient("your_api_key", "your_api_secret", "https://api.whu.sb/api/v1");
 
 // Search for a course
 var results = await client.SearchCoursesAsync("计算机");

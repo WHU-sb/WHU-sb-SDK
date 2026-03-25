@@ -22,7 +22,9 @@ public class WHUSBClient {
     }
 
     public WHUSBClient(String apiKey, String apiSecret) {
-        this(apiKey, apiSecret, "https://whu.sb/api/v1");
+        this(apiKey, apiSecret, System.getenv("WHUSB_API_BASE_URL") != null
+                ? System.getenv("WHUSB_API_BASE_URL")
+                : "https://api.whu.sb/api/v1");
     }
 
     private String generateSignature(long timestamp) {

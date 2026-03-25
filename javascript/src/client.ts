@@ -43,11 +43,14 @@ export class WHUSBClient {
   private config: SDKConfig;
 
   constructor(config: SDKConfig = {}) {
+    const defaultBaseUrl = (typeof process !== 'undefined' && process.env?.WHUSB_API_BASE_URL)
+      || 'https://api.whu.sb/api/v1';
+
     this.config = {
-      baseUrl: 'https://whu.sb/api/v1',
+      baseUrl: defaultBaseUrl,
       ...config,
     };
-    this.config.baseUrl = this.config.baseUrl?.replace(/\/$/, '') || 'https://whu.sb/api/v1';
+    this.config.baseUrl = this.config.baseUrl?.replace(/\/$/, '') || defaultBaseUrl;
   }
 
   private async generateSignature(timestamp: number): Promise<string> {
@@ -65,7 +68,7 @@ export class WHUSBClient {
   private async request<T>(method: string, endpoint: string, options: any = {}): Promise<T> {
     const url = `${this.config.baseUrl}/${endpoint.replace(/^\//, '')}`;
     const timestamp = Math.floor(Date.now() / 1000);
-    
+
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       'X-API-Key': this.config.apiKey || '',

@@ -30,7 +30,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = WHUSBClient::new(
         Some("your_api_key".to_string()),
         Some("your_api_secret".to_string()),
-        "https://whu.sb/api/v1".to_string(),
+        "https://api.whu.sb/api/v1".to_string(),
     );
 
     // Search for a course

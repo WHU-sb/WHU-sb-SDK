@@ -15,11 +15,11 @@ namespace WHUSBSDK
         private readonly string _baseUrl;
         private readonly HttpClient _httpClient;
 
-        public WHUSBClient(string apiKey = null, string apiSecret = null, string baseUrl = "https://whu.sb/api/v1")
+        public WHUSBClient(string apiKey = null, string apiSecret = null, string baseUrl = null)
         {
             _apiKey = apiKey;
             _apiSecret = apiSecret;
-            _baseUrl = baseUrl.TrimEnd('/');
+            _baseUrl = (baseUrl ?? Environment.GetEnvironmentVariable("WHUSB_API_BASE_URL") ?? "https://api.whu.sb/api/v1").TrimEnd('/');
             _httpClient = new HttpClient();
         }
 

@@ -22,7 +22,7 @@ use WHUSBSDK\Client;
 $client = new Client([
     'apiKey' => 'your_api_key',
     'apiSecret' => 'your_api_secret',
-    'baseUrl' => 'https://whu.sb/api/v1'
+    'baseUrl' => 'https://api.whu.sb/api/v1'
 ]);
 
 // Search for a course

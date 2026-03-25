@@ -5,10 +5,10 @@ require 'uri'
 
 module WHUSBSDK
   class Client
-    def initialize(api_key: nil, api_secret: nil, base_url: "https://whu.sb/api/v1")
+    def initialize(api_key: nil, api_secret: nil, base_url: nil)
       @api_key = api_key
       @api_secret = api_secret
-      @base_url = base_url.chomp('/')
+      @base_url = (base_url || ENV['WHUSB_API_BASE_URL'] || "https://api.whu.sb/api/v1").chomp('/')
     end
 
     def search_courses(query, page: 1, limit: 12)

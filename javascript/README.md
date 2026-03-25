@@ -16,7 +16,7 @@ import { WHUSBClient } from '@whu-sb/sdk';
 const client = new WHUSBClient({
   apiKey: 'your_api_key',
   apiSecret: 'your_api_secret',
-  baseUrl: 'https://whu.sb/api/v1'
+  baseUrl: 'https://api.whu.sb/api/v1'
 });
 
 // Search for a course

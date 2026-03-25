@@ -1,3 +1,4 @@
+import os
 import requests
 import hashlib
 import time
@@ -7,9 +8,11 @@ from typing import Dict, List, Optional, Any
 class WHUSBClient:
     """WHU-sb API Client SDK for Python 3.8+"""
 
-    def __init__(self, api_key: Optional[str] = None, api_secret: Optional[str] = None, base_url: str = "https://whu.sb/api/v1"):
+    def __init__(self, api_key: Optional[str] = None, api_secret: Optional[str] = None, base_url: Optional[str] = None):
         self.api_key = api_key
         self.api_secret = api_secret
+        if base_url is None:
+            base_url = os.environ.get("WHUSB_API_BASE_URL", "https://api.whu.sb/api/v1")
         self.base_url = base_url.rstrip("/")
 
     def _generate_signature(self, timestamp: int) -> str:

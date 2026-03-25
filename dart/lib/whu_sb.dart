@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:crypto/crypto.dart';
@@ -20,12 +21,13 @@ class WHUSBClient {
   WHUSBClient({
     String? apiKey,
     String? apiSecret,
-    String baseUrl = 'https://whu.sb/api/v1',
+    String? baseUrl,
   }) {
+    String finalBaseUrl = baseUrl ?? Platform.environment['WHUSB_API_BASE_URL'] ?? 'https://api.whu.sb/api/v1';
     config = WHUSBConfig(
       apiKey: apiKey,
       apiSecret: apiSecret,
-      baseUrl: baseUrl.replaceFirst(RegExp(r'/$'), ''),
+      baseUrl: finalBaseUrl.replaceFirst(RegExp(r'/$'), ''),
     );
   }
 

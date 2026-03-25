@@ -39,7 +39,7 @@ Most API endpoints require authentication. You can obtain an API key and secret 
 # Example environment variables
 WHU_SB_API_KEY=your_api_key
 WHU_SB_API_SECRET=your_api_secret
-WHU_SB_BASE_URL=https://whu.sb/api/v1
+WHUSB_API_BASE_URL=https://api.whu.sb/api/v1
 ```
 
 ## Security
